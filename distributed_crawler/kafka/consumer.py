@@ -22,7 +22,7 @@ class Consumer(Client):
     def get_message(self):
         message = self.consumer.consume()
         value, partition, offset = self.dict_from_binary(message.value), message.partition, message.offset
-        self.consumer.commit_offsets([partition, offset])
+        self.consumer.commit_offsets([(partition, offset)])
         return dict(message=value, partition=partition.id, offset=offset)
 
     @staticmethod
