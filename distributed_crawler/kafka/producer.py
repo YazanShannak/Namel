@@ -21,4 +21,4 @@ class Producer(Client):
 
     @staticmethod
     def dict_to_bytes(message: dict):
-        return json.dumps(message)
+        return json.dumps(message).encode()
