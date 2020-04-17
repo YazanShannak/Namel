@@ -1,10 +1,10 @@
-from pykafka import KafkaClient
 from .client import Client
 import json
+from typing import List
 
 
 class Consumer(Client):
-    def __init__(self, topic, consumer_group, servers=None, managed=True):
+    def __init__(self, topic: str, consumer_group: str, servers: List[str] = None, managed: bool = True):
         if servers is None:
             super().__init__()
         else:
