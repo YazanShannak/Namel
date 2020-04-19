@@ -5,12 +5,12 @@ from distributed_crawler.kafka.producer import Producer
 from distributed_crawler.crawler.url_parser import UrlParser
 
 hostname = os.environ.get("HOSTNAME")
-# parser_name = os.environ.get("parser_name", hostname)
-parser_name = "Test Node"
+parser_name = os.environ.get("parser_name", hostname)
+servers = ["kafka:9092"]
 
 logger = Logger(name="url_parser")
-consumer = Consumer(topic="domains", servers=["localhost:29092"], consumer_group="url_parsers", managed=True)
-producer = Producer(topic="urls", node_name=parser_name, servers=["localhost:29092"])
+consumer = Consumer(topic="domains", servers=servers, consumer_group="url_parsers", managed=True)
+producer = Producer(topic="urls", node_name=parser_name, servers=servers)
 
 
 def produce_url(url):
