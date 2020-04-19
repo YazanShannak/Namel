@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  parser_1:
+    image: distributed_crawler_base:latest
+    container_name: parser_1
+    environment:
+      - parser_name=parser_1
+    networks:
+      - kafka
+    entrypoint: python url_parser.py
+
+  parser_2:
+    image: distributed_crawler_base:latest
+    container_name: parser_2
+    environment:
+      - parser_name=parser_2
+    networks:
+      - kafka
+    entrypoint: python url_parser.py
+
+networks:
+  kafka:
+    external:
+      name: distributed_crawler_2_kafka
+
+
