@@ -21,6 +21,7 @@ def produce_url(url):
 while True:
     message = consumer.get_message()
     domain = message['message']['url']
+    logger.log("Received domain {} to crawl".format(domain))
     parser = UrlParser(domain=domain)
     parser.parsed_urls.subscribe(on_next=produce_url)
     parser.crawl_all()
