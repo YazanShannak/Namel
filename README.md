@@ -31,5 +31,5 @@ Similarly this system doesn't follow the traditional master-slave or peer-peer d
 2. An `url parser` node from the `url parsers consumer group` consumes this message when available, the `url parser` will parse are urls from the first page and go through each page to parse more urls recursively, all while  **asynchronously** producing the urls to the `urls` kafka topic
 3. A `data scraper` node from the `data scrapers consumer group` will consume a message when available to look for the required data form the domain based on **xpath queries**, if they do exist in the page the data scraper will append the scraped data to the url object and produce it to the `data` topic
 
-
+![Namel-Workflow](/home/yazan/Desktop/namel/assets/Namel-Workflow.png)
 
