@@ -21,19 +21,20 @@ class UrlParser:
     def get_url_netloc(url):
         return urlsplit(url).netloc
 
-    def handle_relative_url(self, url):
-        split = urlsplit(url)
+    @staticmethod
+    def handle_relative_url(new_url, main_url):
+        split = urlsplit(new_url)
         if not split.netloc:
-            return urljoin(self.domain.url, url)
+            return urljoin(main_url, new_url)
         else:
-            return url
+            return new_url
 
     def parse_urls(self, url: str) -> List[str]:
         page = self.get_page(url)
         root = html.fromstring(page)
-        urls = root.xpath("//a/@href")
-        urls = [self.handle_relative_url(url) for url in urls]
-        return self.filter_external_links(urls)
+        new_urls = root.xpath("//a/@href")
+        new_urls = [self.handle_relative_url(new_url=new_url, main_url=url) for new_url in new_urls]
+        return self.filter_external_links(new_urls)
 
     def filter_external_links(self, urls):
         urls_netlocs = [(url, self.get_url_netloc(url)) for url in urls]

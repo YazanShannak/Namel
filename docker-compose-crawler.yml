@@ -5,7 +5,7 @@ services:
     image: yazansh/namel:latest
     container_name: parser_1
     environment:
-      - parser_name=parser_1
+      - node_name=parser_1
     networks:
       - kafka
     entrypoint: python run-parser.py
@@ -14,10 +14,28 @@ services:
     image: yazansh/namel:latest
     container_name: parser_2
     environment:
-      - parser_name=parser_2
+      - node_name=parser_2
     networks:
       - kafka
     entrypoint: python run-parser.py
+
+  scraper_1:
+    image: yazansh/namel:latest
+    container_name: scraper_1
+    environment:
+      - node_name=scraper_1
+    networks:
+      - kafka
+    entrypoint: python run-scraper.py
+
+  scraper_2:
+    image: yazansh/namel:latest
+    container_name: scraper_2
+    environment:
+      - node_name=scraper_2
+    networks:
+      - kafka
+    entrypoint: python run-scraper.py
 
 networks:
   kafka:

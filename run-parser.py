@@ -6,7 +6,7 @@ from distributed_crawler.crawler.url_parser import UrlParser
 from distributed_crawler.crawler.entities import Domain
 
 hostname = os.environ.get("HOSTNAME")
-parser_name = os.environ.get("parser_name", hostname)
+parser_name = os.environ.get("node_name", hostname)
 servers = ["kafka:9092"]
 
 logger = Logger(name="url_parser")

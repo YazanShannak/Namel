@@ -12,10 +12,36 @@ class Domain:
 
 
 class Url:
-    def __init__(self, url: str, data):
-        self.url = url
-        self.data = data
+    def __init__(self, url: str, data, response=None):
+        self._url = url
+        self._data = data
+        self._response = response
 
     @property
     def object(self):
-        return dict(url=self.url, data=self.data)
+        main_dict = dict(url=self._url, data=self.data)
+        if self.response:
+            main_dict["response"] = self.response
+            return main_dict
+        else:
+            return main_dict
+
+    @property
+    def data(self):
+        return self._data
+
+    @property
+    def url(self):
+        return self._url
+
+    @data.setter
+    def data(self, new_data):
+        self._data = new_data
+
+    @property
+    def response(self):
+        return self._response
+
+    @response.setter
+    def response(self, code):
+        self._response = code
