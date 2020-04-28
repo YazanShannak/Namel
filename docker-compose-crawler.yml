@@ -2,22 +2,22 @@ version: "3"
 
 services:
   parser_1:
-    image: distributed_crawler_base:latest
+    image: yazansh/namel:latest
     container_name: parser_1
     environment:
       - parser_name=parser_1
     networks:
       - kafka
-    entrypoint: python url_parser.py
+    entrypoint: python run-parser.py
 
   parser_2:
-    image: distributed_crawler_base:latest
+    image: yazansh/namel:latest
     container_name: parser_2
     environment:
       - parser_name=parser_2
     networks:
       - kafka
-    entrypoint: python url_parser.py
+    entrypoint: python run-parser.py
 
 networks:
   kafka:
