@@ -16,7 +16,7 @@ Similarly this system doesn't follow the traditional master-slave or peer-peer d
 
 ### Core Components
 
-- Kafka](https://kafka.apache.org/), an open source real-time messaging broker,  with three main topics:
+- [Kafka](https://kafka.apache.org/), an open source real-time messaging broker,  with three main topics:
   - Domains
   - URLs
   - Data
