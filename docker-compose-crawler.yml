@@ -40,6 +40,6 @@ services:
 networks:
   kafka:
     external:
-      name: distributed_crawler_2_kafka
+      name: namel_kafka
 
 
