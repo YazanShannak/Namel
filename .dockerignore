@@ -6,3 +6,4 @@ assets
 docker-compose-crawler.yml
 docker-compose-kafka.yml
 Dockerfile
+docs
