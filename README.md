@@ -31,3 +31,6 @@ Similarly this system doesn't follow the traditional master-slave or peer-peer d
 
 ![Namel-Workflow](./assets/Namel-Workflow.png)
 
+### Notes
+- When a domain is crawled, external urls are filtered
+
