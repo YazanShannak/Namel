@@ -16,8 +16,8 @@ class DomainJob(Resource):
 
     def post(self):
         payload = request.get_json(force=True)
-        url, data = payload["url"], payload["data"]
-        obj = {"url": url, "data": data}
+        url, data = payload["url"], payload["required_data"]
+        obj = {"url": url, "required_data": data}
         message = json.dumps(obj).encode()
         self.producer.produce(message)
         return obj
