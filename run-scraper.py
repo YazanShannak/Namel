@@ -25,8 +25,8 @@ def produce_scraped_data(data):
 
 while True:
     url_info = consumer.get_message()
-    url_info = Url(url=url_info["url"], data=url_info["data"])
-    logger.log("Received url {} to scrape".format(url_info.url))
-    scraper = DataScraper(url=url_info)
+    url, required_data = url_info.get("url"), url_info.get("required_data")
+    logger.log("Received url {} to scrape".format(url))
+    scraper = DataScraper(url=url, required_data=required_data)
     output = scraper.scrape_page()
     produce_scraped_data(output)
