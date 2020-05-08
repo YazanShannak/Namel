@@ -1,13 +1,13 @@
 from lxml import html
 import requests
 from typing import List, Dict
+from .base import Base
 
 
-class DataScraper:
+class DataScraper(Base):
     """
     Class to scrape data from a given page
     """
-
     def __init__(self, url: str, required_data: List[Dict]):
         """
         :param url: url of the page to be scraped for the required data
@@ -15,23 +15,9 @@ class DataScraper:
         :param required_data: required data to be looked for and parsed from the page
         :type required_data: list of objects, keys are "key" and "xpath"
         """
-        self.url = url
-        self.required_data = required_data
-        self.page_content, self.response_code = self.get_page(self.url)
-        self.root = html.fromstring(self.page_content) if self.response_code == 200 else None
+        super(DataScraper, self).__init__(url=url, required_data=required_data)
+        self.root = html.fromstring(self.response_content) if self.response_code == 200 else None
         self.scraped_data = None
-
-    @staticmethod
-    def get_page(url: str):
-        """
-        Perform an http request, returns content of the response
-        :param url: url to get content for
-        :type url: str
-        :return: Content of the response from the url
-        :rtype: bytes
-        """
-        response = requests.get(url)
-        return response.content, response.status_code
 
     def create_output(self):
         """
