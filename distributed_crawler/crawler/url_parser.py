@@ -16,7 +16,14 @@ class UrlParser:
     """
 
     def __init__(self, domain_url: str, required_data: List[Dict]):
-        """Instance constructor"""
+        """
+        Class to asynchronously parse all urls from a given domain
+        :param domain_url: Domain's URL to crawl
+        :type domain_url: str
+        :param domain_meta: Meta data from splitting domain_url
+        :param parsed_urls: Stream of parsed urls
+        :type parsed_urls: Subject of
+        """
         self.domain_url = domain_url
         self.required_data = required_data
         self.domain_meta = urlsplit(self.domain_url)
