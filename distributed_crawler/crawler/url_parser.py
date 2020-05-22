@@ -1,4 +1,4 @@
-from typing import List, Dict
+from typing import List, Dict, Optional
 from urllib.parse import urljoin, urlsplit
 
 from lxml import html
@@ -55,7 +55,7 @@ class UrlParser(Base):
         netloc = self.get_url_netloc(new_url)
         return new_url if netloc else urljoin(main_url, new_url)
 
-    def parse_urls(self, url: str, page_content: bytes) -> List[str] | None:
+    def parse_urls(self, url: str, page_content: bytes) -> Optional[List[str]]:
         """
         parse all urls from the page of a given url, handles relative paths (urls) and filters external urls
         :param url: url to parse urls from

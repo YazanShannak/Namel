@@ -30,6 +30,7 @@ services:
       - zookeeper
     networks:
       - kafka
+    restart: always
   kafdrop:
     image: obsidiandynamics/kafdrop
     container_name: kafdrop
@@ -44,32 +45,32 @@ services:
     depends_on:
       - zookeeper
       - kafka
-  ksqldb-server:
-    image: confluentinc/ksqldb-server:0.8.1
-    hostname: ksqldb-server
-    container_name: ksqldb-server
-    ports:
-      - "8088:8088"
-    environment:
-      KSQL_LISTENERS: http://0.0.0.0:8088
-      KSQL_BOOTSTRAP_SERVERS: kafka:9092
-      KSQL_KSQL_LOGGING_PROCESSING_STREAM_AUTO_CREATE: "true"
-      KSQL_KSQL_LOGGING_PROCESSING_TOPIC_AUTO_CREATE: "true"
-    networks:
-      - kafka
-    depends_on:
-      - kafka
-
-  ksqldb-cli:
-    image: confluentinc/ksqldb-cli:0.8.1
-    container_name: ksqldb-cli
-    depends_on:
-      - ksqldb-server
-      - kafka
-    entrypoint: /bin/sh
-    tty: true
-    networks:
-      - kafka
+#  ksqldb-server:
+#    image: confluentinc/ksqldb-server:0.8.1
+#    hostname: ksqldb-server
+#    container_name: ksqldb-server
+#    ports:
+#      - "8088:8088"
+#    environment:
+#      KSQL_LISTENERS: http://0.0.0.0:8088
+#      KSQL_BOOTSTRAP_SERVERS: kafka:9092
+#      KSQL_KSQL_LOGGING_PROCESSING_STREAM_AUTO_CREATE: "true"
+#      KSQL_KSQL_LOGGING_PROCESSING_TOPIC_AUTO_CREATE: "true"
+#    networks:
+#      - kafka
+#    depends_on:
+#      - kafka
+#
+#  ksqldb-cli:
+#    image: confluentinc/ksqldb-cli:0.8.1
+#    container_name: ksqldb-cli
+#    depends_on:
+#      - ksqldb-server
+#      - kafka
+#    entrypoint: /bin/sh
+#    tty: true
+#    networks:
+#      - kafka
 
 
 

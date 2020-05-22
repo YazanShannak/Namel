@@ -9,6 +9,8 @@ services:
     networks:
       - kafka
     entrypoint: python run-parser.py
+    depends_on:
+      - splash
 
   parser_2:
     image: yazansh/namel:latest
@@ -18,6 +20,8 @@ services:
     networks:
       - kafka
     entrypoint: python run-parser.py
+    depends_on:
+      - splash
 
   scraper_1:
     image: yazansh/namel:latest
@@ -27,6 +31,8 @@ services:
     networks:
       - kafka
     entrypoint: python run-scraper.py
+    depends_on:
+      - splash
 
   scraper_2:
     image: yazansh/namel:latest
@@ -36,6 +42,15 @@ services:
     networks:
       - kafka
     entrypoint: python run-scraper.py
+    depends_on:
+      - splash
+
+  splash:
+    image: scrapinghub/splash:latest
+    container_name: splash
+    ports:
+      - 8050:8050
+
 
 networks:
   kafka:

@@ -16,5 +16,6 @@ class Base:
         :return: Content of the response from the url
         :rtype: bytes
         """
-        response = requests.get(url)
+        # response = requests.get("http://splash:8050/render.json?url={}&html=1")
+        response = requests.get(url=url)
         return response.status_code, response.content
