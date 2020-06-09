@@ -11,7 +11,7 @@ servers = ["kafka:9092"]
 
 logger = Logger(name="data_scraper")
 consumer = Consumer(topic="urls", servers=servers, consumer_group="data_scrapers", managed=True)
-producer = Producer(topic="items", node_name=scraper_name, servers=servers)
+producer = Producer(topic="data", node_name=scraper_name, servers=servers)
 
 
 def produce_scraped_data(data):
