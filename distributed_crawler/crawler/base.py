@@ -9,6 +9,7 @@ class Base:
         self.url, self.required_data = url, required_data
         self.response_code, self.response_content = self.get_page(self.url)
         self.root = html.fromstring(self.response_content) if self.response_code == 200 else None
+        self.domain_meta = urlsplit(self.url)
 
     @staticmethod
     def get_page(url: str) -> Tuple:

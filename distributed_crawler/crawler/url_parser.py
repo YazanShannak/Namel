@@ -24,7 +24,7 @@ class UrlParser(Base):
         :type parsed_urls: Subject of
         """
         super(UrlParser, self).__init__(url=domain_url, required_data=required_data)
-        self.domain_meta = urlsplit(self.url)
+
         self.parsed_urls = Subject()
         self.parsed_pages = []
 

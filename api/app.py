@@ -5,7 +5,7 @@ from pykafka import KafkaClient
 
 client = KafkaClient(hosts="localhost:29092")
 topics = client.topics
-domains = topics['domains']
+domains = topics['urls']
 domains_producer = domains.get_producer()
 
 app = Flask(__name__)

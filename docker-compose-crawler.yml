@@ -1,55 +1,55 @@
 version: "3"
 
 services:
-  parser_1:
+  node_1:
     image: yazansh/namel:latest
-    container_name: parser_1
+    container_name: node_1
     environment:
-      - node_name=parser_1
+      - node_name=node_1
     networks:
       - kafka
-    entrypoint: python run-parser.py
-    depends_on:
-      - splash
+    entrypoint: python run-hybrid.py
+  #    depends_on:
+  #      - splash
 
-  parser_2:
+  node_2:
     image: yazansh/namel:latest
-    container_name: parser_2
+    container_name: node_2
     environment:
-      - node_name=parser_2
+      - node_name=node_2
     networks:
       - kafka
-    entrypoint: python run-parser.py
-    depends_on:
-      - splash
+    entrypoint: python run-hybrid.py
+  #    depends_on:
+  #      - splash
 
-  scraper_1:
-    image: yazansh/namel:latest
-    container_name: scraper_1
-    environment:
-      - node_name=scraper_1
-    networks:
-      - kafka
-    entrypoint: python run-scraper.py
-    depends_on:
-      - splash
+#  scraper_1:
+#    image: yazansh/namel:latest
+#    container_name: node_1
+#    environment:
+#      - node_name=node_1
+#    networks:
+#      - kafka
+#    entrypoint: python run-hybrid.py
+#  #    depends_on:
+#  #      - splash
+#
+#  scraper_2:
+#    image: yazansh/namel:latest
+#    container_name: scraper_2
+#    environment:
+#      - node_name=scraper_2
+#    networks:
+#      - kafka
+#    entrypoint: python run-hybrid.py
+#    depends_on:
+#      - splash
 
-  scraper_2:
-    image: yazansh/namel:latest
-    container_name: scraper_2
-    environment:
-      - node_name=scraper_2
-    networks:
-      - kafka
-    entrypoint: python run-scraper.py
-    depends_on:
-      - splash
-
-  splash:
-    image: scrapinghub/splash:latest
-    container_name: splash
-    ports:
-      - 8050:8050
+#  splash:
+#    image: scrapinghub/splash:latest
+#    container_name: splash
+#    ports:
+#      - 8050:8050
 
 
 networks:

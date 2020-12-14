@@ -45,6 +45,15 @@ services:
     depends_on:
       - zookeeper
       - kafka
+  redis:
+    image: redislabs/rebloom:latest
+    container_name: redis
+    ports:
+    - '6379:6379'
+    networks:
+      - kafka
+
+
 #  ksqldb-server:
 #    image: confluentinc/ksqldb-server:0.8.1
 #    hostname: ksqldb-server
